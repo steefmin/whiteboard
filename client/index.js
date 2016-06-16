@@ -12,7 +12,7 @@ var xhr = require('xhr')
 
 var TRACKER_URL = 'wss://tracker.webtorrent.io'
 
-global.WEBTORRENT_ANNOUNCE = [ TRACKER_URL ]
+global.WEBTORRENT_ANNOUNCE = [ TRACKER_URL, 'ws://tracker.steefmin.xyz' ]
 
 if (!Peer.WEBRTC_SUPPORT) {
   window.alert('This browser is unsupported. Please use a browser with WebRTC support.')
@@ -22,7 +22,7 @@ var getClient = thunky(function (cb) {
   xhr('http://localhost:9100/rtcConfig', function (err, res) {
     var rtcConfig
     if (err || res.statusCode !== 200) {
-      window.alert('Could not get WebRTC config from server. Using default (without TURN).')
+      //window.alert('Could not get WebRTC config from server. Using default (without TURN).')
     } else {
       try {
         rtcConfig = JSON.parse(res.body)
