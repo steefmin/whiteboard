@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="style.css" charset="utf-8" />
+    <script   src="https://code.jquery.com/jquery-3.0.0.min.js"   integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="   crossorigin="anonymous"></script>
   </head>
   <body>
     <script>
@@ -13,10 +14,34 @@
       var script = document.createElement('script')
       script.src = './bundle.js'
       document.currentScript.parentNode.insertBefore(script, document.currentScript)
+      $(document).ready(function(){
+
+        // hide title on click
+        $('.title').click(function(){
+          $('.title').fadeOut("slow");
+        });
+
+        // hide explanation on click
+        $('.explanation').click(function(){
+          $('.explanation').fadeOut("slow");
+        });
+
+        // hide both title and explanation after certain time
+        $('.explanation').delay(20000).fadeOut("slow");
+        $('.title').delay(20000).fadeOut("slow");
+
+      });
+
     } else {
       // If we are in the electron env
       require('./bundle')
     }
     </script>
+    <div class="title">
+      Whiteboard
+    </div>
+    <div class="explanation">
+      This is a shared whiteboard with everyone who has this site open. It is fully P2P so nothing is stored on the server. Content is saved as long as someone keeps a browser window open. Colors and names are randomly generated. You can also drop images and video onto the whiteboard. 
+    </div>
   </body>
 </html>
